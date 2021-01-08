@@ -10,21 +10,22 @@ LiveSplitt auto-splitter for Haydee 2 with auto-start, (optional) reset on start
 - automatically split on any% End
 - automatically split on item pick up (select which in Settings)
 - automatically reset the timer on Start
+- should work when loading from a save (you need to skip splits accordingly)
 
 ## Installation 
 
 - start LiveSplit
 - right-click > Edit Splits...
-- in Game Name enter 'Haydee 2' (must be entered correctly for LiveSplit to find it)
-- Activate
+- for Game Name enter 'Haydee 2' (exactly like that for LiveSplit to find it)
+- click Activate
 
 ## Manual Installation (skip if you used the 'Activate' Button)
 
 You may want to change default settings and/or enhance the auto-splitter:
 
 - Download https://github.com/EnthusiastNT/haydee2/blob/main/haydee2.asl
-- Edit Layout
-- add Scriptable Auto Splitter (+ > Control > Scriptable Auto Splitter)
+- right-click > Edit Layout...
+- add (+) > Control > Scriptable Auto Splitter
 - set Script Path to your .asl file
   (LiveSplit automatically catches when you change the .asl)
   
@@ -37,8 +38,8 @@ You may want to change default settings and/or enhance the auto-splitter:
 
 ## Thanks
 
-- Thanks to [Cotaho](https://github.com/Coltaho/), his Timespinner .asl was an inspiration
-- Thanks to everyone sharing code and insight on the LiveSplit Discord, used the search function a lot!
+- Most thankfull to [Cotaho](https://github.com/Coltaho/), his Timespinner .asl was an inspiration
+- Thanks to everyone sharing code and insight on the LiveSplit Discord, I've used the search function a lot!
 
 ## Contact
 
