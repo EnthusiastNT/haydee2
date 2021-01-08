@@ -1,8 +1,6 @@
 # Haydee 2
 LiveSplitt auto-splitter for Haydee 2 with auto-start, reset on start (optional), and load removal
-
-- [LiveSplit](https://github.com/LiveSplit) - Find out more about LiveSplit. It's a popular timer program typically used for speedruns.
-- [ASL](https://github.com/LiveSplit/LiveSplit.AutoSplitters) - More information about .asl scripts and autosplitters in general.
+<img align="right" width="250" height="700" src="https://raw.githubusercontent.com/EnthusiastNT/haydee2/main/livesplit_preview.png">
 
 ## Features (all optional)
 
@@ -14,7 +12,7 @@ LiveSplitt auto-splitter for Haydee 2 with auto-start, reset on start (optional)
 
 ## Installation 
 
-- start LiveSplit
+- download [LiveSplit](https://livesplit.org/downloads/)
 - right-click > Edit Splits...
 - for Game Name enter 'Haydee 2' (exactly like that for LiveSplit to find it)
 - click Activate
@@ -46,6 +44,12 @@ You may want to change default settings and/or enhance the auto-splitter:
 - (make sure you don't use two auto-splitters at the same time)
   
 ## FAQ
+
+Q: What is [LiveSplit](https://github.com/LiveSplit)?  
+A: A popular timer program typically used for speedruns.
+
+Q: What is [ASL](https://github.com/LiveSplit/LiveSplit.AutoSplitters)?  
+A: General guidelines how to write an autosplitter.
 
 Q: It doesn't split on some items!?  
 A: Make sure you have all items in your Layout checked that you have in your Splits list.
