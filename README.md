@@ -38,8 +38,8 @@ You may want to change default settings and/or enhance the auto-splitter:
 
 ## Thanks
 
-- Most thankfull to [Cotaho](https://github.com/Coltaho/), his Timespinner .asl was an inspiration
-- Thanks to everyone sharing code and insight on the LiveSplit Discord, I've used the search function a lot!
+- Most thankfull to [Cotaho](https://github.com/Coltaho/), his Timespinner .asl was most helpful!
+- Thanks to everyone sharing code snippets and insight on the Speedrun Tool Development [Discord](https://discord.gg/MtVmSggpVb), I've used the search function a lot!
 
 ## Contact
 
