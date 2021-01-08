@@ -19,6 +19,19 @@ LiveSplitt auto-splitter for Haydee 2 with auto-start, (optional) reset on start
 - for Game Name enter 'Haydee 2' (exactly like that for LiveSplit to find it)
 - click Activate
 
+## Set-up Splits and Icons
+
+All splits that are enabled by default in Settings, with subsplits and icons from the game:
+[All Splits with Icons](Haydee_2_Splits_Icons.lss) (click Raw > right-click > Save File...)
+In LiveSplit right-click > Open Layout > From File...
+
+## Manual Set-up
+
+- right-click > Edit Splits...
+- Settings
+- select items to split on
+- enable Start/Split feature at the top
+
 ## Manual Installation (skip if you used the 'Activate' Button)
 
 You may want to change default settings and/or enhance the auto-splitter:
@@ -29,19 +42,6 @@ You may want to change default settings and/or enhance the auto-splitter:
 - set Script Path to your .asl file
   (LiveSplit automatically catches when you change the .asl)
   
-## Set-up
-
-- right-click > Edit Splits...
-- Settings
-- select items to split on
-- enable Start/Split feature at the top
-
-## Ready-to-use Splits File with all Splits and Icons
-
-All splits that are enabled by default in Settings, with subsplits and icons from the game:
-
-[All Splits with Icons](Haydee_2_Splits_Icons.lss) (click Raw > right-click > Save File...)
-
 ## FAQ
 
 Q: It doesn't split on some items!?
