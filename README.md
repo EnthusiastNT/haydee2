@@ -1,6 +1,6 @@
 # Haydee 2
 LiveSplitt auto-splitter for Haydee 2 with auto-start, reset on start (optional), and load removal
-<img align="right" width="250" height="700" src="https://raw.githubusercontent.com/EnthusiastNT/haydee2/main/livesplit_preview.png">
+<img align="right" width="200" height="550" src="https://raw.githubusercontent.com/EnthusiastNT/haydee2/main/livesplit_preview.png">
 
 ## Features (all optional)
 
@@ -51,26 +51,26 @@ A: A popular timer program typically used for speedruns.
 Q: What is [ASL](https://github.com/LiveSplit/LiveSplit.AutoSplitters)?  
 A: General guidelines how to write an autosplitter.
 
-Q: It doesn't split on some items!?  
+Q: It **doesn't split** on some items!?  
 A: Make sure you have all items in your Layout checked that you have in your Splits list.
 
-Q: It doesn't split on what I collected!?  
+Q: It doesn't **split on what I collected**!?  
 A: The auto-splitter is not aware of your Splits list. Make sure to arrange your Splits list in the same order you collect items.
 
-Q: It doesn't split at the end!?  
+Q: It doesn't **split at the end**!?  
 A: You may have more items checked than splits in your list. Make sure you have exactly as many items checked in your Layout as you have in your Splits.
 
-Q: When I load from a save can I start the timer at 0:00?  
+Q: When I load from a save can I **start** the timer **at 0:00**?  
 A: We are working on an option for that...
 
-Q: Can I split on a particular room, or when the lights come back on?  
+Q: Can I **split on a particular room**, or when the lights come back on?  
 A: No, unfortunately we haven't found a way to split on these, yet.
 
 Q: What are those -dashes in your splits file?  
-A: Indents. They indicate subsplits. Add subsplits in Edit Layout > (+) > List > Subsplits
+A: Indents. They indicate subsplits. Add **subsplits** in Edit Layout > (+) > List > Subsplits
 
 Q: The time is not the same as in the game...!?  
-A: Make sure to switch to Game Time (right-click > Control > Game Time)
+A: Make sure to switch to **Game Time** (right-click > Control > Game Time)
 
 ## Thanks
 
