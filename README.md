@@ -38,7 +38,7 @@ You may want to change default settings and/or enhance the auto-splitter:
 
 ## Layout File with all Splits and Icons
 
-soon
+[Haydee 2 Splits file with subsplits and icons](Haydee_2_Splits_Icons.lss)
 
 ## FAQ
 
