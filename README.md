@@ -24,7 +24,7 @@ LiveSplitt auto-splitter for Haydee 2 with auto-start, reset on start (optional)
 Ready-to-use file with all splits that are also enabled by default in Settings.
 Includes subsplits and icons from the game.
 
-- download [All Splits with Icons](Haydee_2_Splits_Icons.lss) (click Raw > right-click > Save File...)
+- download **[All Splits with Icons](Haydee_2_Splits_Icons.lss)** (click Raw > right-click > Save File...)
 - in LiveSplit right-click > Open Layout > From File...
 - move splits up and down according to your route
 
@@ -39,11 +39,11 @@ Includes subsplits and icons from the game.
 
 You may want to change default settings and/or enhance the auto-splitter:
 
-- [Download .asl script](haydee2.asl) (click Raw > right-click > Save File...)
+- download the [ASL Script](haydee2.asl) (click Raw > right-click > Save File...)
 - right-click > Edit Layout...
 - add (+) > Control > Scriptable Auto Splitter
-- set Script Path to your .asl file
-  (LiveSplit automatically catches when you change the .asl)
+- set Script Path to your .asl file (LiveSplit automatically catches when you change the .asl)
+- (make sure you don't use two auto-splitters at the same time)
   
 ## FAQ
 
