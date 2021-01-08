@@ -40,7 +40,6 @@ Includes subsplits and icons from the game.
 You may want to change default settings and/or enhance the auto-splitter:
 
 - download the [ASL Script](haydee2.asl) (click Raw > right-click > Save File...)
-[dl](./main/haydee2.asl)
 - right-click > Edit Layout...
 - add (+) > Control > Scriptable Auto Splitter
 - set Script Path to your .asl file (LiveSplit automatically catches when you change the .asl)
