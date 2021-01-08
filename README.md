@@ -77,4 +77,6 @@ A: Make sure to switch to Game Time (right-click > Control > Game Time)
 
 If you encounter any issues or have feature requests please let me know! 
 
-- [Enthusiast](https://steamcommunity.com/sharedfiles/filedetails/?id=2315048067) or Enthusiast#2098 on Discord
+- [Issues](./issues)
+- [Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=2315048067)
+- Enthusiast#2098 on Discord
