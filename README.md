@@ -36,9 +36,11 @@ You may want to change default settings and/or enhance the auto-splitter:
 - select items to split on
 - enable Start/Split feature at the top
 
-## Layout File with all Splits and Icons
+## Ready-to-use Splits File with all Splits and Icons
 
-[Haydee 2 Splits file with subsplits and icons](Haydee_2_Splits_Icons.lss) (click Raw > right-click > Save File...)
+All splits that are enabled by default in Settings, with subsplits and icons from the game:
+
+[All Splits with Icons](Haydee_2_Splits_Icons.lss) (click Raw > right-click > Save File...)
 
 ## FAQ
 
