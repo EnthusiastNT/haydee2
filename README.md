@@ -21,8 +21,10 @@ LiveSplitt auto-splitter for Haydee 2 with auto-start, (optional) reset on start
 
 ## Set-up Splits and Icons
 
-All splits that are enabled by default in Settings, with subsplits and icons from the game:  
-[All Splits with Icons](Haydee_2_Splits_Icons.lss) (click Raw > right-click > Save File...)  
+All splits that are enabled by default in Settings, with subsplits and icons from the game:
+
+[All Splits with Icons](Haydee_2_Splits_Icons.lss) (click Raw > right-click > Save File...)
+
 In LiveSplit right-click > Open Layout > From File...
 
 ## Manual Set-up
