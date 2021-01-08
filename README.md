@@ -2,7 +2,7 @@
 LiveSplitt auto-splitter for Haydee 2 with auto-start, (optional) reset on start, and load removal
 
 - [LiveSplit](https://github.com/LiveSplit) - Find out more about LiveSplit. It's a popular timer program typically used for speedruns.
-- [ASL](https://github.com/LiveSplit/LiveSplit.AutoSplitters/blob/master/README.md) - Here you can find more information about ASL (basically C#) and autosplitters in general.
+- [ASL](https://github.com/LiveSplit/LiveSplit.AutoSplitters) - Here you can find more information about ASL (basically C#) and autosplitters in general.
 
 ## Features (all optional)
 
@@ -23,7 +23,7 @@ LiveSplitt auto-splitter for Haydee 2 with auto-start, (optional) reset on start
 
 You may want to change default settings and/or enhance the auto-splitter:
 
-- Download https://github.com/EnthusiastNT/haydee2/blob/main/haydee2.asl
+- (Download .asl script)[blob/main/haydee2.asl]
 - right-click > Edit Layout...
 - add (+) > Control > Scriptable Auto Splitter
 - set Script Path to your .asl file
@@ -38,7 +38,7 @@ You may want to change default settings and/or enhance the auto-splitter:
 
 ## Layout File with all Splits and Icons
 
-[Haydee 2 Splits file with subsplits and icons](Haydee_2_Splits_Icons.lss)
+[Haydee 2 Splits file with subsplits and icons](raw/main/Haydee_2_Splits_Icons.lss)
 
 ## FAQ
 
