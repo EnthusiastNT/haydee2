@@ -66,11 +66,10 @@ state("SteamGame", "1.06")
 startup {
 	print("HDHDHD --- startup enter ---");
 	refreshRate = 2;
-	vars.refreshSlots = 30;
 	vars.needsRescan = true;
 	vars.whoDidIt = "";
 
-  	// (int not used, however, could indicate a count in a future version of this script)
+	// (int) not used, however, could indicate a count in a future version of this script
 	vars.itemsAll = new Dictionary<string, int>();
 	vars.itemsToFind = new Dictionary<string, int>();  // set in getAllSplits()
 	vars.myAddItem = (Func<string, bool, string, string, bool>)((sId, bDefault, sDescription, sTooltip) => {
@@ -132,9 +131,9 @@ startup {
 		vars.myAddItem("Cutter", true, "Blowtorch", "aka Cutter");
 		vars.myAddItem("Flash", false, "Flashdrive", "USB Stick");
 		vars.myAddItem("Lockpick", false, "", "");
-		vars.myAddItem("Bracer", false, "Bracelet", "looks like a Fitbit");
-		vars.myAddItem("Decoder", false, "Decoder", "that black device at the end");
-		vars.myAddItem("Balloon", false, "gas cylinder", "balloon, looks like a refillable gas bottle");
+		vars.myAddItem("Bracer", true, "Bracelet", "looks like a Fitbit");
+		vars.myAddItem("Decoder", true, "Decoder", "that black device at the end");
+		vars.myAddItem("Balloon", true, "gas cylinder", "balloon, looks like a refillable gas bottle");
 
 	settings.CurrentDefaultParent = null;
 	settings.Add("Guns", true);
@@ -187,7 +186,7 @@ startup {
 	settings.CurrentDefaultParent = "info";
 	settings.Add("info1", false, "Haydee 2 Autosplitter v1.02 by Enthusiast");
 	settings.Add("info2", false, "Supports Haydee 2.0 patch 1.07 (Steam)");
-	settings.Add("info9", false, "Website: https://steamcommunity.com/sharedfiles/filedetails/?id=2331001020");  // todo_release change when released
+	settings.Add("info9", false, "Website: https://github.com/EnthusiastNT/haydee2");
 	settings.CurrentDefaultParent = null;
 
 	vars.timerModel = new TimerModel { CurrentState = timer };
@@ -196,15 +195,15 @@ startup {
 		print("HDHDHD timer.OnStart!!!");
 		vars.whoDidIt = "OnStart";
 		vars.needsRescan = true;
-    });
-    timer.OnStart += vars.timer_OnStart;
+	});
+	timer.OnStart += vars.timer_OnStart;
 
 	vars.timer_OnReset = (LiveSplit.Model.Input.EventHandlerT<TimerPhase>)((s, e) => {
 		print("HDHDHD timer.OnReset!!!");
 		vars.whoDidIt = "OnReset";
 		vars.needsRescan = true;
-    });
-    timer.OnReset += vars.timer_OnReset;
+	});
+	timer.OnReset += vars.timer_OnReset;
 
 	print("HDHDHD startup done");
 }
@@ -215,6 +214,8 @@ init {
 
 	// "SteamGame" seems a bit generic, don't update{} if wrong (todo_later: sigscan)
 	//vars.isHD2 = modules.First().FileName.Contains("Haydee 2");  // .exe path
+
+	/* function declarations */
 
 	vars.onceUpdate = false;  // debug
 	vars.onceSplit = false;  // debug
@@ -280,7 +281,6 @@ init {
 		print("HDHDHD " + text + " " + strList);
 	});
 
-	//vars.stopWatch = new Stopwatch();
 
 	/* init real start */
 
@@ -290,7 +290,6 @@ init {
 	vars.getAllSplits();
 	vars.dbgPrintWhatsLeft("init");
 
-	vars.refreshSlots = 3;  // todo_release: set to 3
 	refreshRate = 60;  // todo_release set to 60
 	print("HDHDHD init done");
 }
@@ -304,24 +303,23 @@ update {
 		vars.onceUpdate = true;
 	}
 
-	// we good? (has made a difference yet...)
+	// we good?
 	//if ( !vars.isHD2 ) return false;
 
-
-	// slots completely change in every new room, so we re-scan when room changed (or after loading, should be the same)
+	// slots completely change in every new room, so we re-scan when room changed
+	//   (or after loading, should be the same, just catch them all)
 	bool SlotsDone = false;
 	if ( (old.ppRoomAddr != current.ppRoomAddr && 0 != current.ppRoomAddr) ||
-		 (old.ppLoading != current.ppLoading && !current.ppLoading) ) {
-        if( vars.getAllSlots() )
+			(old.ppLoading != current.ppLoading && !current.ppLoading) ) {
+		if( vars.getAllSlots() )
 			vars.dbgPrintAllSlots("room");
 		SlotsDone = true;
 	}
 
-
 	// re-scan if timer was started manually e.g. after loading from a save point
 	if ( vars.needsRescan ) {
 		if ( !SlotsDone ) {
-        	if( vars.getAllSlots() )
+			if( vars.getAllSlots() )
 				vars.dbgPrintAllSlots(vars.whoDidIt);
 		}
 		vars.getAllSplits();
@@ -332,12 +330,12 @@ update {
 }
 
 start {
-	// this becomes 1 when the game is started (i.e. after 'Press Any Key...') (before: 0)
-	//  - also: addressSlots["slot01"] == 0x00 (and all other slots invalid) (before: invalid)
+	// this switches from 0 to 1 when the game is started (i.e. after 'Press Any Key...')
+	//   (however, not after a save-load)
 	if ( vars.itemsToFind.ContainsKey("AutoStart") && !old.ppStarted && current.ppStarted ) {
 		print("HDHDHD AutoStart!!!");
 		// re-scan before start
-        if( vars.getAllSlots() )
+		if( vars.getAllSlots() )
 			vars.dbgPrintAllSlots("AutoStart");
 		vars.getAllSplits();
 		vars.dbgPrintWhatsLeft("AutoStart");
@@ -377,8 +375,7 @@ split {
 		}
 	}
 
-	// end reached, no more room
-	//   (ppRoomAddr is 0 also while loading)
+	// end reached, no more room (ppRoomAddr is 0 while loading)
 	if ( !current.ppLoading && 0 != old.ppRoomAddr && 0 == current.ppRoomAddr ) {
 		// timer ist 0? then this was a New Game or load from save
 		if ( current.ppIngameTime > 100.0 ) {
@@ -418,7 +415,7 @@ exit {
 shutdown {
 	print("HDHDHD shutdown enter");
 	timer.OnStart -= vars.timer_OnStart;
-    timer.OnReset -= vars.timer_OnReset;
+	timer.OnReset -= vars.timer_OnReset;
 }
 
 
@@ -431,11 +428,11 @@ A: Make sure you have all items in your Layout checked that you have in your Spl
 
 Q: It doesn't split on what I collected!?
 A: The auto-splitter is not aware of your Splits list. Make sure to arrange your Splits list
-     in the same order you collect items.
+	in the same order you collect items.
 
 Q: It doesn't split at the end!?
 A: You may have more items checked than splits in your list. Make sure
-  you have exactly as many items checked in your Layout as you have in your Splits.
+	you have exactly as many items checked in your Layout as you have in your Splits.
 
 Q: When I load from a save can I start the timer at 0:00?
 A: We are working on an option for that...
@@ -455,5 +452,20 @@ A: They indicate subsplits. Add Subsplits in Edit Layout > [+] > List > Subsplit
 
 Q: The time is not the same as in the game...!?
 A: Make sure to switch to Game Time (right-click > Control > Game Time)
+
+------------
+    <AutoSplitter>
+        <Games>
+            <Game>Haydee2</Game>
+            <Game>Haydee 2</Game>
+            <Game>Haydee 2.0</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/EnthusiastNT/haydee2/blob/main/haydee2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Configurable Load Remover / Auto Splitter. (By DevilSquirrel)</Description>
+        <Website>https://github.com/ShootMe/LiveSplit.HollowKnight</Website>
+    </AutoSplitter>
 
 */
