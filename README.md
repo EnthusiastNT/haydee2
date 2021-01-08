@@ -1,8 +1,8 @@
 # Haydee 2
-LiveSplitt auto-splitter for Haydee 2 with auto-start, (optional) reset on start, and load removal
+LiveSplitt auto-splitter for Haydee 2 with auto-start, reset on start (optional), and load removal
 
 - [LiveSplit](https://github.com/LiveSplit) - Find out more about LiveSplit. It's a popular timer program typically used for speedruns.
-- [ASL](https://github.com/LiveSplit/LiveSplit.AutoSplitters) - Here you can find more information about ASL (basically C#) and autosplitters in general.
+- [ASL](https://github.com/LiveSplit/LiveSplit.AutoSplitters) - More information about .asl scripts and autosplitters in general.
 
 ## Features (all optional)
 
@@ -59,11 +59,11 @@ A: You may have more items checked than splits in your list. Make sure you have 
 Q: When I load from a save can I start the timer at 0:00?  
 A: We are working on an option for that...
 
-Q: Can I split on a particular room, or when the lights are back on?  
+Q: Can I split on a particular room, or when the lights come back on?  
 A: No, unfortunately we haven't found a way to split on these, yet.
 
 Q: What are those -dashes in your splits file?  
-A: They indicate subsplits. Add subsplits in Edit Layout > (+) > List > Subsplits
+A: Indents. They indicate subsplits. Add subsplits in Edit Layout > (+) > List > Subsplits
 
 Q: The time is not the same as in the game...!?  
 A: Make sure to switch to Game Time (right-click > Control > Game Time)
