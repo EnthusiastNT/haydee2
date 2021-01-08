@@ -23,7 +23,7 @@ LiveSplitt auto-splitter for Haydee 2 with auto-start, (optional) reset on start
 
 You may want to change default settings and/or enhance the auto-splitter:
 
-- [Download .asl script](https://github.com/EnthusiastNT/haydee2/raw/main/haydee2.asl)
+- [Download .asl script](haydee2.asl) (click Raw > right-click > Save File...)
 - right-click > Edit Layout...
 - add (+) > Control > Scriptable Auto Splitter
 - set Script Path to your .asl file
@@ -38,7 +38,7 @@ You may want to change default settings and/or enhance the auto-splitter:
 
 ## Layout File with all Splits and Icons
 
-[Haydee 2 Splits file with subsplits and icons](https://github.com/EnthusiastNT/haydee2/raw/main/Haydee_2_Splits_Icons.lss)
+[Haydee 2 Splits file with subsplits and icons](Haydee_2_Splits_Icons.lss) (click Raw > right-click > Save File...)
 
 ## FAQ
 
