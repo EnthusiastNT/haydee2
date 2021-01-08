@@ -70,7 +70,7 @@ A: Make sure to switch to Game Time (right-click > Control > Game Time)
 
 ## Thanks
 
-- Thanks to [Cotaho](https://github.com/Coltaho/), his Timespinner .asl was most helpful!
+- Thanks to [Coltaho](https://github.com/Coltaho/), his Timespinner .asl was most helpful!
 - Thanks to everyone sharing code snippets and insight on the Speedrun Tool Development [Discord](https://discord.gg/MtVmSggpVb), I've used the search function a lot!
 
 ## Contact
