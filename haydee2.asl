@@ -2,7 +2,7 @@
 //  - kudos to Coltaho and his Timespinner.asl, was extremely helpful!
 
 // (version is not used yet, may need to hash bc silent updates...)
-state("SteamGame", "1.07")
+state("SteamGame", "1.08")
 {
 	// switches from 0 to 1 when the game is started (i.e. after 'Press Any Key...')
 	//   (however, doesn't work when loading from a save point -> need to start manually)
@@ -17,6 +17,8 @@ state("SteamGame", "1.07")
 	// this seems to point to the current room, 0 before start, 0 after end
 	long ppRoomAddr : "SteamGame.exe", 0x00821FE8;
 }
+
+//state("SteamGame", "1.07") // no changes
 
 /* not good (keeping this for future generations...)
 state("SteamGame", "1.06")
@@ -184,8 +186,9 @@ startup {
 	settings.CurrentDefaultParent = null;
 	settings.Add("info", false, "-- Info --");
 	settings.CurrentDefaultParent = "info";
-	settings.Add("info1", false, "Haydee 2 Autosplitter v1.02 by Enthusiast");
-	settings.Add("info2", false, "Supports Haydee 2.0 patch 1.07 (Steam)");
+	settings.Add("info1", false, "Haydee 2 Autosplitter v1.03 by Enthusiast");
+	settings.Add("info2", false, "Supports Haydee 2.0 patch 1.08 (Steam)");
+	settings.Add("info3", false, ".lss available with all splits and icons at:");
 	settings.Add("info9", false, "Website: https://github.com/EnthusiastNT/haydee2");
 	settings.CurrentDefaultParent = null;
 
@@ -412,19 +415,3 @@ shutdown {
 	timer.OnStart -= vars.timer_OnStart;
 	timer.OnReset -= vars.timer_OnReset;
 }
-
-/*
-    <AutoSplitter>
-        <Games>
-            <Game>Haydee2</Game>
-            <Game>Haydee 2</Game>
-            <Game>Haydee 2.0</Game>
-        </Games>
-        <URLs>
-            <URL>https://github.com/EnthusiastNT/haydee2/blob/main/haydee2.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Configurable Load Remover / Auto Splitter (by Enthusiast)</Description>
-        <Website>https://github.com/EnthusiastNT/haydee2</Website>
-    </AutoSplitter>
-*/
