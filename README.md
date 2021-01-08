@@ -77,6 +77,6 @@ A: Make sure to switch to Game Time (right-click > Control > Game Time)
 
 If you encounter any issues or have feature requests please let me know! 
 
-- [Issues](../issues)
+- [Issues](https://github.com/EnthusiastNT/haydee2/issues)
 - [Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=2315048067)
 - Enthusiast#2098 on Discord
