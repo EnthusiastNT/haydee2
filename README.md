@@ -28,14 +28,14 @@ Includes subsplits and icons from the game.
 - in LiveSplit right-click > Open Layout > From File...
 - move splits up and down according to your route
 
-## Manual Set-up
+## (manual set-up)
 
 - right-click > Edit Splits...
 - Settings
 - select items to split on
 - enable Start/Split feature at the top
 
-## Manual Installation (skip if you used the 'Activate' Button)
+## (edit the script itself)
 
 You may want to change default settings and/or enhance the auto-splitter:
 
@@ -70,11 +70,11 @@ A: Make sure to switch to Game Time (right-click > Control > Game Time)
 
 ## Thanks
 
-- Most thankfull to [Cotaho](https://github.com/Coltaho/), his Timespinner .asl was most helpful!
+- Thanks to [Cotaho](https://github.com/Coltaho/), his Timespinner .asl was most helpful!
 - Thanks to everyone sharing code snippets and insight on the Speedrun Tool Development [Discord](https://discord.gg/MtVmSggpVb), I've used the search function a lot!
 
 ## Contact
 
-If you encounter any issues or have feature requests, please let me know! 
+If you encounter any issues or have feature requests please let me know! 
 
 - [Enthusiast](https://steamcommunity.com/sharedfiles/filedetails/?id=2315048067) or Enthusiast#2098 on Discord
