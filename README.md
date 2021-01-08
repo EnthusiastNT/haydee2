@@ -36,6 +36,33 @@ You may want to change default settings and/or enhance the auto-splitter:
 - select items to split on
 - enable Start/Split feature at the top
 
+## Layout File with all Splits and Icons
+
+soon
+
+## FAQ
+
+Q: It doesn't split on some items!?
+A: Make sure you have all items in your Layout checked that you have in your Splits list.
+
+Q: It doesn't split on what I collected!?
+A: The auto-splitter is not aware of your Splits list. Make sure to arrange your Splits list in the same order you collect items.
+
+Q: It doesn't split at the end!?
+A: You may have more items checked than splits in your list. Make sure you have exactly as many items checked in your Layout as you have in your Splits.
+
+Q: When I load from a save can I start the timer at 0:00?
+A: We are working on an option for that...
+
+Q: Can I split on a particular room, or when the lights are back on?
+A: No, unfortunately we haven't found a way to split on these, yet.
+
+Q: What are those -dashes in your splits file?
+A: They indicate subsplits. Add subsplits in Edit Layout > (+) > List > Subsplits
+
+Q: The time is not the same as in the game...!?
+A: Make sure to switch to Game Time (right-click > Control > Game Time)
+
 ## Thanks
 
 - Most thankfull to [Cotaho](https://github.com/Coltaho/), his Timespinner .asl was most helpful!
