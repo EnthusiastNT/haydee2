@@ -13,27 +13,27 @@ LiveSplitt auto-splitter for Haydee 2 with auto-start, (optional) reset on start
 
 ## Installation 
 
-> start LiveSplit
-> right-click > Edit Splits...
-> in Game Name enter 'Haydee 2' (must be entered correctly for LiveSplit to find it)
-> Activate
+- start LiveSplit
+- right-click > Edit Splits...
+- in Game Name enter 'Haydee 2' (must be entered correctly for LiveSplit to find it)
+- Activate
 
 ## Manual Installation (skip if you used the 'Activate' Button)
 
 You may want to change default settings and/or enhance the auto-splitter:
 
-> Download https://github.com/EnthusiastNT/haydee2/blob/main/haydee2.asl
-> Edit Layout
-> add Scriptable Auto Splitter (+ > Control > Scriptable Auto Splitter)
-> set Script Path to your .asl file
+- Download https://github.com/EnthusiastNT/haydee2/blob/main/haydee2.asl
+- Edit Layout
+- add Scriptable Auto Splitter (+ > Control > Scriptable Auto Splitter)
+- set Script Path to your .asl file
   (LiveSplit automatically catches when you change the .asl)
   
 ## Set-up
 
-> right-click > Edit Splits...
-> Settings
-> select items to split on
-> enable Start/Split feature at the top
+- right-click > Edit Splits...
+- Settings
+- select items to split on
+- enable Start/Split feature at the top
 
 ## Thanks
 
