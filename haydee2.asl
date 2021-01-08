@@ -308,17 +308,17 @@ update {
 
 	// slots completely change in every new room, so we re-scan when room changed
 	//   (or after loading, should be the same, just catch them all)
-	bool SlotsDone = false;
+	bool bSlotsDone = false;
 	if ( (old.ppRoomAddr != current.ppRoomAddr && 0 != current.ppRoomAddr) ||
-			(old.ppLoading != current.ppLoading && !current.ppLoading) ) {
+		   (old.ppLoading != current.ppLoading && !current.ppLoading) ) {
 		if( vars.getAllSlots() )
 			vars.dbgPrintAllSlots("room");
-		SlotsDone = true;
+		bSlotsDone = true;
 	}
 
 	// re-scan if timer was started manually e.g. after loading from a save point
 	if ( vars.needsRescan ) {
-		if ( !SlotsDone ) {
+		if ( !bSlotsDone ) {
 			if( vars.getAllSlots() )
 				vars.dbgPrintAllSlots(vars.whoDidIt);
 		}
@@ -350,7 +350,6 @@ split {
 		print("HDHDHD split enter (once)");
 		vars.onceSplit = true;
 	}
-
 
 	// anything new collected we haven't split on before?
 	for (int i = 1; i <= 16; i++) {
@@ -404,12 +403,8 @@ gameTime {
 }
 
 isLoading {
-	return true;  // use gameTime{}
+	return true;  // always use gameTime{}
 	//return current.ppLoading;
-}
-
-exit {
-//	print("HDHDHD exit enter");
 }
 
 shutdown {
@@ -418,42 +413,7 @@ shutdown {
 	timer.OnReset -= vars.timer_OnReset;
 }
 
-
 /*
-
-FAQ
-
-Q: It doesn't split on some items!?
-A: Make sure you have all items in your Layout checked that you have in your Splits list.
-
-Q: It doesn't split on what I collected!?
-A: The auto-splitter is not aware of your Splits list. Make sure to arrange your Splits list
-	in the same order you collect items.
-
-Q: It doesn't split at the end!?
-A: You may have more items checked than splits in your list. Make sure
-	you have exactly as many items checked in your Layout as you have in your Splits.
-
-Q: When I load from a save can I start the timer at 0:00?
-A: We are working on an option for that...
-
-Q: Can I split on a particular room, or when the lights are back on?
-A: No, unfortunately we haven't found a way to split on these, yet.
-
-Q: Can I customize the script?
-A: Yes, you can change default settings and/or enhance the auto-splitter:
-	- download haydee2.asl
-	- add Scriptable Auto Splitter (+ > Control > Scriptable Auto Splitter)
-	- set Script Path to your .asl file
-	- LiveSplit automatically catches when you change the .asl
-
-Q: What are those -dashes in your splits file?
-A: They indicate subsplits. Add Subsplits in Edit Layout > [+] > List > Subsplits
-
-Q: The time is not the same as in the game...!?
-A: Make sure to switch to Game Time (right-click > Control > Game Time)
-
-------------
     <AutoSplitter>
         <Games>
             <Game>Haydee2</Game>
@@ -464,8 +424,7 @@ A: Make sure to switch to Game Time (right-click > Control > Game Time)
             <URL>https://github.com/EnthusiastNT/haydee2/blob/main/haydee2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Configurable Load Remover / Auto Splitter. (By DevilSquirrel)</Description>
-        <Website>https://github.com/ShootMe/LiveSplit.HollowKnight</Website>
+        <Description>Configurable Load Remover / Auto Splitter (by Enthusiast)</Description>
+        <Website>https://github.com/EnthusiastNT/haydee2</Website>
     </AutoSplitter>
-
 */
