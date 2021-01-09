@@ -25,15 +25,16 @@ Includes subsplits and icons from the game.
 - download **[All Splits with Icons](Haydee_2_Splits_Icons.lss)** (click Raw > right-click > Save File...)
 - in LiveSplit right-click > Open Layout > From File...
 - move splits up and down according to your route
+- Make sure you have **Subsplits** in your Layout, not just Splits: Edit Layout > (+) > List > Subsplits
 
-## (manual set-up)
+## (Manual Set-up)
 
 - right-click > Edit Splits...
 - Settings
 - select items to split on
 - enable Start/Split feature at the top
 
-## (edit the script itself)
+## (Edit the Script)
 
 You may want to change default settings and/or enhance the auto-splitter:
 
@@ -41,18 +42,12 @@ You may want to change default settings and/or enhance the auto-splitter:
 - right-click > Edit Layout...
 - add (+) > Control > Scriptable Auto Splitter
 - set Script Path to your .asl file (LiveSplit automatically catches when you change the .asl)
-- (make sure you don't use two auto-splitters at the same time)
+- deactivate the other auto-splitter (don't use two at the same time)
   
 ## FAQ
 
-Q: What is [LiveSplit](https://github.com/LiveSplit)?  
-A: A popular timer program typically used for speedruns.
-
-Q: What is [ASL](https://github.com/LiveSplit/LiveSplit.AutoSplitters)?  
-A: General guidelines how to write an autosplitter.
-
 Q: It **doesn't split** on some items!?  
-A: Make sure you have all items in your Layout checked that you have in your Splits list.
+A: Make sure you have all items in your Layout checked that you have in your Splits list. Easiest way ist to use above split file and check all default settings (i.e. click Default).
 
 Q: It doesn't **split on what I collected**!?  
 A: The auto-splitter is not aware of your Splits list. Make sure to arrange your Splits list in the same order you collect items.
@@ -64,13 +59,16 @@ Q: When I load from a save can I **start** the timer **at 0:00**?
 A: We are working on an option for that...
 
 Q: Can I **split on a particular room**, or when the lights come back on?  
-A: No, unfortunately we haven't found a way to split on these, yet.
+A: Same, we are working on it.
 
 Q: What are those -dashes in your splits file?  
 A: Indents. They indicate subsplits. Add **subsplits** in Edit Layout > (+) > List > Subsplits
 
 Q: The time is not the same as in the game...!?  
 A: Make sure to switch to **Game Time** (right-click > Control > Game Time)
+
+- More about [LiveSplit](https://github.com/LiveSplit)
+- How to write an [autosplitter](https://github.com/LiveSplit/LiveSplit.AutoSplitters)
 
 ## Thanks
 
