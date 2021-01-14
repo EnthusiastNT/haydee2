@@ -4,11 +4,12 @@ LiveSplitt auto-splitter for Haydee 2 with auto-start, reset on start (optional)
 
 ## Features (all optional)
 
-- automatically start the timer when selecting New - Start
-- automatically split on any% End
-- automatically split on item pick up (select which in Settings)
-- automatically reset the timer on Start
-- should work when loading from a save (you need to skip splits accordingly)
+- auto-start the timer when selecting New > Start
+- split on item pick up (select which in Settings)
+- split on 'Lift Off' ending
+- auto-reset the timer on New > Start
+- when loading from a save: option to auto-skip
+- display current room name in LiveSplit
 
 ## Installation 
 
@@ -22,7 +23,7 @@ LiveSplitt auto-splitter for Haydee 2 with auto-start, reset on start (optional)
 Ready-to-use file with all splits that are also enabled by default in Settings.
 Includes subsplits and icons from the game.
 
-- download **[All Splits with Icons](Haydee_2_Splits_Icons.lss)** (click Raw > right-click > Save File...)
+- download **[All Splits with Icons](haydee2_splits_icons_v1.1.lss)** (click Raw > right-click > Save File...)
 - in LiveSplit right-click > Open Layout > From File...
 - move splits up and down according to your route
 - Make sure you have **Subsplits** in your Layout, not just Splits: Edit Layout > (+) > List > Subsplits
@@ -55,17 +56,14 @@ A: The auto-splitter is not aware of your Splits list. Make sure to arrange your
 Q: It doesn't **split at the end**!?  
 A: You may have more items checked than splits in your list. Make sure you have exactly as many items checked in your Layout as you have in your Splits.
 
-Q: When I load from a save can I **start** the timer **at 0:00**?  
-A: We are working on an option for that...
-
-Q: Can I **split on a particular room**, or when the lights come back on?  
-A: Same, we are working on it.
-
-Q: What are those -dashes in your splits file?  
-A: Indents. They indicate subsplits. Add **subsplits** in Edit Layout > (+) > List > Subsplits
+Q: When I load from a save can I start the timer at 0:00?  
+A: You can switch to **Real Time** (right-click > Control > Real Time)
 
 Q: The time is not the same as in the game...!?  
 A: Make sure to switch to **Game Time** (right-click > Control > Game Time)
+
+Q: What are those -dashes in your splits file?  
+A: Indents. They indicate subsplits. Add **subsplits** in Edit Layout > (+) > List > Subsplits
 
 - More about [LiveSplit](https://github.com/LiveSplit)
 - How to write an [autosplitter](https://github.com/LiveSplit/LiveSplit.AutoSplitters)
