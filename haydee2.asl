@@ -1,50 +1,73 @@
 // auto-splitter for Haydee 2 (available on Steam)
-//  - shoutout to Coltaho and his Timespinner.asl, was extremely helpful!
+//   (shoutout to Coltaho, his Timespinner.asl was very helpful!)
 
-// patch 1.08, depot 10, 2021-01-19b (everything from 1.07 +0x2000)
+// patch 1.09, depot 10, 3 February 2021 – 17:56:44 UTC ([1.08]+0x3050)
+state("SteamGame", "1.09")
+{
+	// switches from 0 to 1 when the game is started (i.e. after 'Press Any Key...')
+	//   (however, doesn't work when loading from a save point -> need to start manually)
+	bool ppStarted : "SteamGame.exe", 0x81D238;  // +0x3000
+
+	// 0x01 when loading
+	bool ppLoading : "SteamGame.exe", 0x826F7C;  // +0x3050
+
+	// in-game time as float (4 bytes)
+	float ppIngameTime : "SteamGame.exe", 0x82701C;
+
+	// this seems to point to the current room, 0 before start, 0 after end
+	long ppRoomAddr : "SteamGame.exe", 0x827038;
+
+	// room name
+	string64 ppRoomName : "SteamGame.exe", 0x828C70;  // unicode 64 bytes = 32 chars
+
+	// number of saves
+	int ppNumSaves : "SteamGame.exe", 0x826F5C;
+}
+
+// patch 1.08, depot 9, 19 January 2021 – 16:47:58 UTC ([1.07]+0x2000)
 state("SteamGame", "1.08")
 {
 	// switches from 0 to 1 when the game is started (i.e. after 'Press Any Key...')
 	//   (however, doesn't work when loading from a save point -> need to start manually)
-	bool ppStarted : "SteamGame.exe", 0x0081A238;
+	bool ppStarted : "SteamGame.exe", 0x81A238;
 
 	// 0x01 when loading
-	bool ppLoading : "SteamGame.exe", 0x00823F2C;
+	bool ppLoading : "SteamGame.exe", 0x823F2C;
 
 	// in-game time as float (4 bytes)
-	float ppIngameTime : "SteamGame.exe", 0x00823FCC;
+	float ppIngameTime : "SteamGame.exe", 0x823FCC;
 
 	// this seems to point to the current room, 0 before start, 0 after end
-	long ppRoomAddr : "SteamGame.exe", 0x00823FE8;
+	long ppRoomAddr : "SteamGame.exe", 0x823FE8;
 
 	// room name
-	string64 ppRoomName : "SteamGame.exe", 0x00825C20;  // unicode 64 bytes = 32 chars
+	string64 ppRoomName : "SteamGame.exe", 0x825C20;  // unicode 64 bytes = 32 chars
 
 	// number of saves
-	int ppNumSaves : "SteamGame.exe", 0x00823F0C;
+	int ppNumSaves : "SteamGame.exe", 0x823F0C;
 }
 
-// patch 1.07, depot 8, 2021-01-05
+// patch 1.07, depot 7, 5 January 2021
 state("SteamGame", "1.07")
 {
 	// switches from 0 to 1 when the game is started (i.e. after 'Press Any Key...')
 	//   (however, doesn't work when loading from a save point -> need to start manually)
-	bool ppStarted : "SteamGame.exe", 0x00818238;
+	bool ppStarted : "SteamGame.exe", 0x818238;
 
 	// 0x01 when loading
-	bool ppLoading : "SteamGame.exe", 0x00821F2C;
+	bool ppLoading : "SteamGame.exe", 0x821F2C;
 
 	// in-game time as float (4 bytes)
-	float ppIngameTime : "SteamGame.exe", 0x00821FCC;
+	float ppIngameTime : "SteamGame.exe", 0x821FCC;
 
 	// this seems to point to the current room, 0 before start, 0 after end
-	long ppRoomAddr : "SteamGame.exe", 0x00821FE8;
+	long ppRoomAddr : "SteamGame.exe", 0x821FE8;
 
 	// room name
-	string64 ppRoomName : "SteamGame.exe", 0x00823C20;  // unicode 64 bytes = 32 chars
+	string64 ppRoomName : "SteamGame.exe", 0x823C20;  // unicode 64 bytes = 32 chars
 
 	// number of saves
-	int ppNumSaves : "SteamGame.exe", 0x00821F0C;
+	int ppNumSaves : "SteamGame.exe", 0x821F0C;
 }
 
 //state("SteamGame", "2020-12-23") // no changes
@@ -53,42 +76,42 @@ state("SteamGame", "1.07")
 state("SteamGame", "2020-12-18b")
 {
 	// this becomes 1 when the game is started (i.e. after 'Press Any Key...') (before: 0)
-	byte ppStarted : "SteamGame.exe", 0x00818238;
+	byte ppStarted : "SteamGame.exe", 0x818238;
 
 	// this seems to be 00000000 when loading (otherwise different in each room)
-	long ppLoadingOld : "SteamGame.exe", 0x00822040;
+	long ppLoadingOld : "SteamGame.exe", 0x822040;
 
 	// we would need a list of (important) rooms
-	//string32 ppRoomName : "SteamGame.exe", 0x00823C2E;  // unicode, (cut off ".scene")
-	//string16 ppRoomNameF1 : "SteamGame.exe", 0x0083B630;  // only if F1 debug screen is active
+	//string32 ppRoomName : "SteamGame.exe", 0x823C2E;  // unicode, (cut off ".scene")
+	//string16 ppRoomNameF1 : "SteamGame.exe", 0x83B630;  // only if F1 debug screen is active
 
 	// this seems to point to the current room even without F1 debug
-	//long ppRoomAddr : "SteamGame.exe", 0x00821FE8;
+	//long ppRoomAddr : "SteamGame.exe", 0x821FE8;
 
 	// points to the 16 inventory slots, 0x00 to 0x78
 	//  - each slot points to an item (or 00000000/garbage)
 	//  - each item has an identifying string class, e.g. "CardOrange"
 	//  - we split when an item is picked up for the first time
-	//long ppSlotBase : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x00, 0x18;
+	//long ppSlotBase : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x00, 0x18;
 	//string16 ppItem : ppSlotBase, 0x8, 0x10, 0x2C;
 
 	/* replaced with DeepPointer in init bc faster
-	string16 ppSlot01 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x00, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot02 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x08, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot03 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x10, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot04 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x18, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot05 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x20, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot06 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x28, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot07 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x30, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot08 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x38, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot09 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x40, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot10 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x48, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot11 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x50, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot12 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x58, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot13 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x60, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot14 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x68, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot15 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x70, 0x18, 0x8, 0x10, 0x2C;
-	string16 ppSlot16 : "SteamGame.exe", 0x00822290, 0x358, 0x10, 0x78, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot01 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x00, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot02 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x08, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot03 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x10, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot04 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x18, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot05 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x20, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot06 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x28, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot07 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x30, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot08 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x38, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot09 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x40, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot10 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x48, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot11 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x50, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot12 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x58, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot13 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x60, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot14 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x68, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot15 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x70, 0x18, 0x8, 0x10, 0x2C;
+	string16 ppSlot16 : "SteamGame.exe", 0x822290, 0x358, 0x10, 0x78, 0x18, 0x8, 0x10, 0x2C;
 	* /
 }
 */
@@ -100,6 +123,7 @@ startup {
 	vars.whoDidIt = "first";
 	vars.cTextRoom = null;  // info text component in Layout
 	vars.curRoomName = "";  // full scene name
+	vars.bShuttleEntered = false;
 
 	// (int) not used yet, however, could indicate a count in a future version of this script
 	vars.itemsAll = new Dictionary<string, int>();
@@ -118,11 +142,11 @@ startup {
 	// item string class is used as our LiveSplit id
 	//   (full list of possible items in Haydee's Edith > Graphite > mHas > Item Class)
 	settings.Add("AutoStart", true, "Start timer on 'Press Any Key...'");
-	settings.SetToolTip("AutoStart", "note: only starts automatically after a reset");
+	settings.SetToolTip("AutoStart", "note: only auto-starts after a reset");
 	settings.Add("LiftOff", true, "Stop timer after Lift Off");
-	settings.SetToolTip("LiftOff", "note: only stops automatically if this is your last split");
+	settings.SetToolTip("LiftOff", "note: only auto-stops if this is your last split");
 	settings.Add("AutoReset", true, "Reset timer automatically on new game, or loading a previous save");
-	settings.SetToolTip("AutoReset", "");
+	settings.SetToolTip("AutoReset", "warning: not recommended bc things can, and often will, go wrong");
 
 	settings.CurrentDefaultParent = null;
 	settings.Add("Options", true, "Options");
@@ -136,70 +160,68 @@ startup {
 		settings.Add("Skip16", false, "auto-skip +16 splits");
 
 	settings.CurrentDefaultParent = null;
-	settings.Add("FromStart", true, "Pistol to Boltcutter, Medical save (10)");
-	settings.SetToolTip("FromStart", "if you disable this also auto-skip 2+8=10");
-	settings.CurrentDefaultParent = "FromStart";
+	settings.Add("pa_Start", true, "Admin (6)");
+	settings.CurrentDefaultParent = "pa_Start";
 		vars.myAddItem("Squirt", true, "Pistol", "Squirt");
 		vars.myAddItem("Screw", true, "Screwdriver", "");
 		vars.myAddItem("UpgradeDamage", true, "Damage Upgrade", "red");
 		vars.myAddItem("Wrench", true, "Wrench", "");
-		vars.myAddItem("N7_ENG_Arena", true, "ENG Arena (above arena)", "");
-// throw 2 ammo at stairs to Technical L1
-// throw Wrench + 1 ammo in Medical
+		vars.myAddItem("N7_ENG_Arena", true, "above Arena", "N7_ENG_Arena");
 		vars.myAddItem("CardOrange", true, "Orange", "");
-		vars.myAddItem("Clicker", true, "Wifi Clicker", "remote control");
-		vars.myAddItem("JackGrip", true, "Lever", "Jack, long lever grip for forklift");
-		vars.myAddItem("Boltcutter", true, "Boltcutter", "");
-		vars.myAddItem("Remote", true, "Wifi Button", "blue receiver button");
-// take Receiver here
 
+	// blue-before-teal
 	settings.CurrentDefaultParent = null;
-	settings.Add("FromMedical", true, "Crowbar to Security save (6)");
-	settings.SetToolTip("FromMedical", "if you disable this also auto-skip 16");
-	settings.CurrentDefaultParent = "FromMedical";
+	settings.Add("pa_Orange", true, "Engineering (5)");
+	settings.CurrentDefaultParent = "pa_Orange";
+		vars.myAddItem("Clicker", true, "Wifi Clicker", "remote control");
+		vars.myAddItem("Boltcutter", true, "Boltcutter", "");
+		vars.myAddItem("JackGrip", true, "Lever", "Jack, long lever grip for forklift");
 		vars.myAddItem("Crowbar", true, "Crowbar", "");
 		vars.myAddItem("Forceps", true, "Forceps", "look like siccors, pincer to reach something");
-		vars.myAddItem("CardWhite", true, "White", "");
-		vars.myAddItem("Knife", true, "Knife", "");
-		vars.myAddItem("CardTeal", true, "Teal", "");
-		vars.myAddItem("N7_SEC_HallTau", true, "SEC HallTau (blue enter)", "blue hallway with save room");
 
 	settings.CurrentDefaultParent = null;
-	settings.Add("FromSecurity", true, "Blue to Engineering save (4)");
-	settings.SetToolTip("FromSecurity", "if you disable this also auto-skip 4+16=20");
-	settings.CurrentDefaultParent = "FromSecurity";
+	settings.Add("pa_Blue", true, "Security (5)");
+	settings.CurrentDefaultParent = "pa_Blue";
+		vars.myAddItem("N7_SEC_HallTau", true, "Blue enter (hallway with save room)", "N7_SEC_HallTau");
 		vars.myAddItem("CardBlue", true, "Blue", "");
-// skip blue pouch, save 20s
+		vars.myAddItem("CardWhite", true, "White", "");
 		vars.myAddItem("Jammer", true, "Laser Jammer", "red button that disables lasers");
 		vars.myAddItem("Visor", true, "Night Vision", "Night Vision Goggles, NVG");
-// drop screw + 1 ammo at elevator (take before finale)
-		vars.myAddItem("FlaskA", true, "green vial", "");
 
 	settings.CurrentDefaultParent = null;
-	settings.Add("beforeHammer", true, "Hammer to Yellow, Ventilation save (7)");
-	settings.SetToolTip("beforeHammer", "if you disable this also auto-skip 1+2+8+16=27");
-	settings.CurrentDefaultParent = "beforeHammer";
-// drop another 1 ammo at Depot (take when getting 2nd power-button)
+	settings.Add("pa_Teal", true, "Medical (5)");
+	settings.CurrentDefaultParent = "pa_Teal";
+		vars.myAddItem("Knife", true, "Knife", "");
+		vars.myAddItem("CardTeal", true, "Teal", "");
+		vars.myAddItem("FlaskB", true, "blue vial", "");
+		vars.myAddItem("FlaskA", true, "green vial", "");
+		vars.myAddItem("Remote", true, "Wifi Button", "blue receiver button");
+
+	settings.CurrentDefaultParent = null;
+	settings.Add("pa_Yellow", true, "Ventilation (6)");
+	settings.CurrentDefaultParent = "pa_Yellow";
 		vars.myAddItem("Hammer", true, "Hammer", "");
 		vars.myAddItem("Mask", true, "Gas Mask", "Breather");
 		vars.myAddItem("FlaskC", true, "red vial", "");
-		vars.myAddItem("FlaskB", true, "blue vial", "");
 		vars.myAddItem("FlaskAgent", true, "White Antidote", "Agent, white vial/flask/tube");
-		vars.myAddItem("N7_TEC_Ventilation", true, "TEC Ventilation", "");
+		vars.myAddItem("N7_TEC_Ventilation", true, "Ventilation", "N7_TEC_Ventilation");
 		vars.myAddItem("CardYellow", true, "Yellow", "");
 
 	settings.CurrentDefaultParent = null;
-	settings.Add("toEnd", true, "Core and Finale (9+end=37)");
-	settings.SetToolTip("toEnd", "count your splits, need to be as many as items selected here");
-	settings.CurrentDefaultParent = "toEnd";
+	settings.Add("pa_Power", true, "Technical (4)");
+	settings.CurrentDefaultParent = "pa_Power";
 		vars.myAddItem("Valve", true, "Valve", "(looks like a wheel)");
 		vars.myAddItem("Fuse", true, "Fuse", "");
-		vars.myAddItem("N7_TEC_ReactorDown", true, "TEC ReactorDown (aka Core)", "");
-		vars.myAddItem("N7_TEC_Elevators", true, "TEC Elevators (the switch)", "");
+		vars.myAddItem("N7_TEC_ReactorDown", true, "Core", "N7_TEC_ReactorDown");
+		vars.myAddItem("N7_TEC_Elevators", true, "Elevator Switch", "N7_TEC_Elevators");
+
+	settings.CurrentDefaultParent = null;
+	settings.Add("pa_Finale", true, "Finale");
+	settings.CurrentDefaultParent = "pa_Finale";
 		vars.myAddItem("Cutter", true, "Blowtorch", "aka Cutter");
-		vars.myAddItem("Bracer", true, "Bracelet", "looks like a Fitbit");
-		vars.myAddItem("Decoder", true, "Decoder", "that black device at the end");
-		vars.myAddItem("Balloon", true, "gas cylinder", "balloon, looks like a refillable gas bottle");
+		vars.myAddItem("Bracer", true, "Bracelet", "looks like a sports watch");
+		vars.myAddItem("Balloon", true, "balloon", "bottle, cylinder");
+		vars.myAddItem("Decoder", true, "Decoder", "black device");
 		vars.myAddItem("CardBlack", true, "Black", "");
 		// and then the lift-off split
 
@@ -226,11 +248,11 @@ startup {
 		vars.myAddItem("UpgradeClip", false, "Clip Upgrade", "yellow");
 		vars.myAddItem("UpgradeRate", false, "Rate Upgrade", "blue");
 
-		vars.myAddItem("N7_ENG_HallMid", false, "ENG HallMid (orange enter)", "orange hallway with save room");
-		vars.myAddItem("N7_ENG_Packing", false, "ENG Packing (Pouch)", "");
-		vars.myAddItem("N7_SEC_Interrogation", false, "SEC Interrogation (Pouch)", "");
-		vars.myAddItem("N7_TEC_TwoWays", false, "TEC TwoWays (Blowtorch)", "");
-		vars.myAddItem("N7_ADM_Elevator", false, "ADM Elevator (the actual elevator)", "");
+		vars.myAddItem("N7_ENG_HallMid", false, "Orange enter (hallway with save room)", "N7_ENG_HallMid");
+		vars.myAddItem("N7_ENG_Packing", false, "Orange Pouch", "N7_ENG_Packing");
+		vars.myAddItem("N7_SEC_Interrogation", false, "Blue Pouch", "N7_SEC_Interrogation");
+		vars.myAddItem("N7_TEC_TwoWays", false, "Blowtorch room", "N7_TEC_TwoWays");
+		vars.myAddItem("N7_ADM_Elevator", false, "the elevator itself", "N7_ADM_Elevator");
 
 /*
 		settings.CurrentDefaultParent = "everythingelse";
@@ -265,9 +287,9 @@ startup {
 	settings.CurrentDefaultParent = null;
 	settings.Add("info", false, "-- Info --");
 	settings.CurrentDefaultParent = "info";
-		settings.Add("info1", false, "Haydee 2 Autosplitter v1.12 (by Enthusiast)");
-		settings.Add("info2", false, "Supports Haydee 2.0 patches 1.07 + 1.08 (on Steam)");
-		settings.Add("info3", false, "Empty split file available with all splits and icons at:");
+		settings.Add("info1", false, "Haydee 2 Autosplitter v1.14 (by Enthusiast)");
+		settings.Add("info2", false, "Supports patches 1.07, 1.08 and 1.09");
+		settings.Add("info3", false, "Split file with icons available at:");
 		settings.Add("info9", false, "Website: https://github.com/EnthusiastNT/haydee2");
 		settings.CurrentDefaultParent = null;
 
@@ -309,12 +331,16 @@ init {
 	switch (MD5Hash) {
 		case "5206DC1FA308259B22AA8FDF14D64116":
 			version = "1.07";
-			vars.SlotBase = 0x00822290;
+			vars.SlotBase = 0x822290;
 			break;
 		case "CB8A31C01496F9088CC47890D2B48BEE":
-		default:
 			version = "1.08";
-			vars.SlotBase = 0x00824290;
+			vars.SlotBase = 0x824290;
+			break;
+		case "4F39A8B27F183313F25D5BB31C46308D":
+		default:
+			version = "1.09";
+			vars.SlotBase = 0x8272E0;
 			break;
 	}
 
@@ -481,6 +507,7 @@ update {
 
 		vars.whoDidIt = "";
 		vars.needsRescan = false;
+		vars.bShuttleEntered = false;
 	}
 }
 
@@ -494,7 +521,7 @@ start {
 	}
 
 	// after a load from save: was NotRunning, is not loading, yet game time is counting up
-/*  doesn't work: needs a reset before, and resetting would restart automatically...
+/*  does not work: needs a reset before, and resetting would restart automatically...
 	if ( false && settings["StartOnLoad"] && TimerPhase.NotRunning == vars.timerModel.CurrentState.CurrentPhase &&
 				!current.ppLoading && current.ppIngameTime > old.ppIngameTime ) {
 		print("HDHDHD started after load from save!!!");
@@ -548,10 +575,16 @@ split {
 		return true;  // yes, split
 	}
 
-	// end reached, no more room (ppRoomAddr is 0 while loading)
+	// take note that we have been in Shuttle, otherwise don't auto-split on lift-off
+	if ( !vars.bShuttleEntered && !String.IsNullOrEmpty(vars.curRoomName) && vars.curRoomName.Contains("N7_SEC_Shuttle") ) {
+		print("(yes, Shuttle entered)");
+		vars.bShuttleEntered = true;
+	}
+
+	// end reached, no more room (ppRoomAddr is also 0 while loading)
 	if ( !current.ppLoading && 0 != old.ppRoomAddr && 0 == current.ppRoomAddr ) {
-		// timer ist 0 or very small? then this was a New Game or load from save
-		if ( current.ppIngameTime > 100.0 ) {
+		// timer ist 0 or very small? then this was a New Game and subsequent load from save
+		if ( vars.bShuttleEntered && current.ppIngameTime > 100.0 ) {
 			print("HDHDHD --- Lift Off ---");
 			if ( settings["LiftOff"] )
 				return true;
