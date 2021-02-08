@@ -24,7 +24,7 @@ Ready-to-use file with all splits that are also enabled by default in Settings.
 Includes subsplits and icons from the game.
 
 - download **[All Splits with Icons](haydee2_splits_icons_newest.lss)** (click Raw > right-click > Save Page As...)
-- in LiveSplit right-click > Open Layout > From File...
+- in LiveSplit right-click > Edit Splits > From File...
 - move splits up and down according to your route
 - Make sure you have **Subsplits** in your Layout, not just Splits: Edit Layout > (+) > List > Subsplits
 
