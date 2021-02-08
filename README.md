@@ -73,10 +73,15 @@ A: Indents. They indicate subsplits. Add **subsplits** in Edit Layout > (+) > Li
 - shoutout to [Coltaho](https://github.com/Coltaho/), his Timespinner .asl was very helpful!
 - Thanks to everyone sharing code snippets and insight on the Speedrun Tool Development [Discord](https://discord.gg/MtVmSggpVb), I've used the search function a lot!
 
+## Submit Runs
+
+- https://www.speedrun.com/haydee_2
+
 ## Contact
 
 If you encounter any issues or have feature requests please let me know! 
 
 - on Github in the [Issues](https://github.com/EnthusiastNT/haydee2/issues) section
+- https://www.speedrun.com/haydee_2 in the forum
 - on [Steam](https://steamcommunity.com/sharedfiles/filedetails/?id=2315048067) in the comments
 - Enthusiast#2098 on Discord
