@@ -1,6 +1,30 @@
 // auto-splitter for Haydee 2 (available on Steam)
 //   (shoutout to Coltaho, his Timespinner.asl was very helpful!)
 
+// patch 1.11, depot 13 April 2021 – 07:39:25 (basically 1.10+1070)
+state("SteamGame", "1.11")
+{
+	// switches from 0 to 1 when the game is started (i.e. after 'Press Any Key...')
+	//   (however, doesn't work when loading from a save point -> need to start manually)
+	bool ppStarted : "SteamGame.exe", 0x8212D8;  // 8202B0+1028=8212D8
+
+	// 0x01 when loading
+	bool ppLoading : "SteamGame.exe", 0x82B0AC;  // 82A008+10A4=82B0AC
+
+	// in-game time as float (4 bytes)
+	float ppIngameTime : "SteamGame.exe", 0x82B10C;  // 82A09C+1070=82B10C
+
+	// this seems to point to the current room, 0 before start, 0 after end, 0 when loading
+	long ppRoomAddr : "SteamGame.exe", 0x82B128;  // 82A0B8+1070=82B128
+
+	// room name, unicode 64 bytes = 32 chars
+	string64 ppRoomName : "SteamGame.exe", 0x82CD60;  // 82BCF0+1070=82CD60
+
+	// number of saves
+	int ppNumSaves : "SteamGame.exe", 0x82B098;  // 829FE4+10B4=82B098
+}
+
+
 // patch 1.10(b), depot 26 February 2021 – 12:31:39 (basically 1.09+3080)
 state("SteamGame", "1.10")
 {
@@ -23,7 +47,6 @@ state("SteamGame", "1.10")
 	// number of saves
 	int ppNumSaves : "SteamGame.exe", 0x829FE4;  // 826F5C+3088=829FE4
 }
-
 
 // patch 1.09, depot 10, 3 February 2021 – 17:56:44 (basically 1.08+3050)
 state("SteamGame", "1.09")
@@ -311,8 +334,8 @@ startup {
 	settings.CurrentDefaultParent = null;
 	settings.Add("info", false, "-- Info --");
 	settings.CurrentDefaultParent = "info";
-		settings.Add("info1", false, "Haydee 2 Autosplitter v1.14b (by Enthusiast)");
-		settings.Add("info2", false, "Supports patches 1.07 to 1.10");
+		settings.Add("info1", false, "Haydee 2 Autosplitter v1.16 (by Enthusiast)");
+		settings.Add("info2", false, "Supports patches 1.07 to 1.11");
 		settings.Add("info3", false, "Split file with icons available at:");
 		settings.Add("info9", false, "Website: https://github.com/EnthusiastNT/haydee2");
 		settings.CurrentDefaultParent = null;
@@ -366,9 +389,13 @@ init {
 			vars.SlotBase = 0x8272E0;
 			break;
 		case "0D354D984F79CB150ECA451255A34250":
-		default:
 			version = "1.10";
 			vars.SlotBase = 0x82A360;  // 8272E0+3080=82A360
+			break;
+		case "B53F66179C5F97D5CC3829F3CDDCD770":
+		default:
+			version = "1.11";
+			vars.SlotBase = 0x82B3D0;  // 82A360+1070=82B3D0
 			break;
 	}
 
