@@ -1,6 +1,29 @@
 // auto-splitter for Haydee 2 (available on Steam)
 //   (shoutout to Coltaho, his Timespinner.asl was very helpful!)
 
+// patch 1.12, depot 24 August 2021 – 09:03:04 (basically 1.11+7160)
+state("SteamGame", "1.12")
+{
+	// switches from 0 to 1 when the game is started (i.e. after 'Press Any Key...')
+	//   (however, doesn't work when loading from a save point -> need to start manually)
+	bool ppStarted : "SteamGame.exe", 0x828350;  // 8212D8+7078=828350
+
+	// 0x01 when loading
+	bool ppLoading : "SteamGame.exe", 0x8321CC;  // 82B0AC+7120=8321CC
+
+	// in-game time as float (4 bytes)
+	float ppIngameTime : "SteamGame.exe", 0x83226C;  // 82B10C+7160=83226C
+
+	// this seems to point to the current room, 0 before start, 0 after end, 0 when loading
+	long ppRoomAddr : "SteamGame.exe", 0x832288;  // 82B128+7160=832288
+
+	// room name, unicode 64 bytes = 32 chars
+	string64 ppRoomName : "SteamGame.exe", 0x833EC0;  // 82CD60+7160=833EC0
+
+	// number of saves
+	int ppNumSaves : "SteamGame.exe", 0x8321AC;  // 82B098+7114=8321AC
+}
+
 // patch 1.11, depot 13 April 2021 – 07:39:25 (basically 1.10+1070)
 state("SteamGame", "1.11")
 {
@@ -23,7 +46,6 @@ state("SteamGame", "1.11")
 	// number of saves
 	int ppNumSaves : "SteamGame.exe", 0x82B098;  // 829FE4+10B4=82B098
 }
-
 
 // patch 1.10(b), depot 26 February 2021 – 12:31:39 (basically 1.09+3080)
 state("SteamGame", "1.10")
@@ -334,10 +356,10 @@ startup {
 	settings.CurrentDefaultParent = null;
 	settings.Add("info", false, "-- Info --");
 	settings.CurrentDefaultParent = "info";
-		settings.Add("info1", false, "Haydee 2 Autosplitter v1.16 (by Enthusiast)");
-		settings.Add("info2", false, "Supports patches 1.07 to 1.11");
-		settings.Add("info3", false, "Split file with icons available at:");
-		settings.Add("info9", false, "Website: https://github.com/EnthusiastNT/haydee2");
+		settings.Add("info1", false, "Haydee 2 Autosplitter (by Enthusiast)");
+		settings.Add("info2", false, "(supports patches 1.07 to 1.12)");
+		settings.Add("info3", false, "Split-file with icons available at:");
+		settings.Add("info9", false, "https://github.com/EnthusiastNT/haydee2");
 		settings.CurrentDefaultParent = null;
 
 
@@ -365,11 +387,12 @@ startup {
 init {
 	print("HDHDHD init enter");
 
-	// maybe: "SteamGame" seems a bit generic, don't update{} if wrong (todo_later: sigscan)
-	//vars.isHD2 = modules.First().FileName.Contains("Haydee 2");  // .exe path
+	// "SteamGame" seems a bit generic, look for modules
+	//   vars.isHD2 = modules.First().FileName.Contains("Haydee 2");  // .exe path
+	// size is too weak
+	//   int moduleSize = modules.First().ModuleMemorySize;
 
-	// (int moduleSize = modules.First().ModuleMemorySize;)
-	// MD5 code by CptBrian.
+	// MD5 code by CptBrian
 	string MD5Hash;
 	using (var md5 = System.Security.Cryptography.MD5.Create())
 		using (var s = File.Open(modules.First().FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
@@ -393,9 +416,13 @@ init {
 			vars.SlotBase = 0x82A360;  // 8272E0+3080=82A360
 			break;
 		case "B53F66179C5F97D5CC3829F3CDDCD770":
-		default:
 			version = "1.11";
 			vars.SlotBase = 0x82B3D0;  // 82A360+1070=82B3D0
+			break;
+		case "1269D7F3B6951A5D4AC1EBE4D945EBEB":
+		default:
+			version = "1.12";
+			vars.SlotBase = 0x832530;  // 82B3D0+7160=832530
 			break;
 	}
 
@@ -417,7 +444,7 @@ init {
 		string strName = "slot" + i.ToString("D2");
 		vars.deepSlots[strName] = new DeepPointer("SteamGame.exe", vars.SlotBase, 0x358, 0x10, iOffset, 0x18);
 	}
-// TODO_
+
 	// get slot addresses once (faster), points to 00000000 if slot is not used
 	vars.addressSlots = new Dictionary<string, IntPtr>();  // address of slot
 	vars.valueSlots = new Dictionary<string, IntPtr>();  // pointer to item object
